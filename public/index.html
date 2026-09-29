@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101828">
+    <title>LocalBeam — Send files nearby</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="LocalBeam home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M7 23.5 16 4l2.6 10H26L7 28l3.2-10H6l1-4h8.4L13.8 9 7 23.5Z"/></svg>
+        </span>
+        <span>LocalBeam</span>
+      </a>
+      <div class="network-badge"><span></span> Local network</div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">FAST · PRIVATE · NO CLOUD STORAGE</p>
+        <h1>Send a file.<br><em>Keep it local.</em></h1>
+        <p class="intro-copy">Create a single-use link and stream directly through this computer. Your file is never saved on the server.</p>
+      </section>
+
+      <section class="transfer-card" id="sender-view" aria-labelledby="send-title">
+        <div class="card-heading">
+          <div>
+            <p class="step-label">NEW TRANSFER</p>
+            <h2 id="send-title">Choose a file to beam</h2>
+          </div>
+          <span class="limit-chip" id="limit-chip">Loading limit…</span>
+        </div>
+
+        <label class="drop-zone" id="drop-zone" for="file-input">
+          <input type="file" id="file-input">
+          <span class="upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M16 22V7m0 0-6 6m6-6 6 6M7 21v4h18v-4"/></svg>
+          </span>
+          <strong>Drop your file here</strong>
+          <span>or click to browse this device</span>
+        </label>
+
+        <div class="file-row hidden" id="file-row">
+          <span class="file-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6zM14 2v5h5"/></svg>
+          </span>
+          <span class="file-details">
+            <strong id="file-name"></strong>
+            <span id="file-size"></span>
+          </span>
+          <button class="icon-button" type="button" id="remove-file" aria-label="Remove selected file">×</button>
+        </div>
+
+        <p class="notice error hidden" id="send-error" role="alert"></p>
+        <button class="primary-button" type="button" id="create-button" disabled>Create transfer link</button>
+
+        <div class="active-transfer hidden" id="active-transfer">
+          <div class="link-label">
+            <span>Your single-use link</span>
+            <span id="expiry-label"></span>
+          </div>
+          <div class="copy-row">
+            <input id="share-link" readonly aria-label="Transfer link">
+            <button type="button" id="copy-button">Copy</button>
+          </div>
+          <div class="status-line">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="sender-status">Waiting for the recipient to open the link…</span>
+            <strong id="sender-percent">0%</strong>
+          </div>
+          <div class="progress-track"><span id="sender-progress"></span></div>
+          <button class="text-button" type="button" id="cancel-button">Cancel transfer</button>
+        </div>
+      </section>
+
+      <section class="transfer-card receiver-card hidden" id="receiver-view" aria-labelledby="receive-title">
+        <p class="step-label">INCOMING TRANSFER</p>
+        <div class="receive-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M16 6v15m0 0-6-6m6 6 6-6M7 25h18"/></svg>
+        </div>
+        <h2 id="receive-title">A file is ready for you</h2>
+        <div class="incoming-file">
+          <strong id="receive-name">Loading…</strong>
+          <span id="receive-size"></span>
+        </div>
+        <p class="notice error hidden" id="receive-error" role="alert"></p>
+        <button class="primary-button" type="button" id="download-button">Accept and download</button>
+        <div class="receive-progress hidden" id="receive-progress-wrap">
+          <div class="status-line">
+            <span class="status-dot active"></span>
+            <span id="receive-status">Waiting for sender…</span>
+            <strong id="receive-percent">0%</strong>
+          </div>
+          <div class="progress-track"><span id="receive-progress"></span></div>
+        </div>
+        <p class="fine-print">This link works once. Keep this page open until the download finishes.</p>
+      </section>
+
+      <section class="trust-row" aria-label="Transfer details">
+        <div><strong>No file storage</strong><span>Bytes are relayed in memory</span></div>
+        <div><strong>Single-use links</strong><span>Each link accepts one receiver</span></div>
+        <div><strong>Local control</strong><span>The host sets the size limit</span></div>
+      </section>
+    </main>
+
+    <footer><span>LocalBeam</span><span>Built for your local network</span></footer>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

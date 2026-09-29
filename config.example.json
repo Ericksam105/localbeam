@@ -1,0 +1,7 @@
+{
+  "host": "0.0.0.0",
+  "port": 8765,
+  "publicHost": "auto",
+  "maxFileSizeBytes": 2147483648,
+  "linkTtlSeconds": 600
+}
